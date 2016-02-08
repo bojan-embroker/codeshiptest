@@ -1,9 +1,9 @@
 package main
 
 import (
-	"log"
 	"net/http"
-	"net/http/httputil"
+
+	"github.com/embroker/codeshiptest/dump"
 )
 
 func main() {
@@ -11,9 +11,7 @@ func main() {
 	mux := http.NewServeMux()
 	mux.HandleFunc("/", func(responseWriter http.ResponseWriter, request *http.Request) {
 
-		dump, _ := httputil.DumpRequest(request, true)
-		log.Print(string(dump))
-		responseWriter.Write(dump)
+		dump.Dump(responseWriter, request)
 	})
 
 	http.ListenAndServe(":8080", mux)

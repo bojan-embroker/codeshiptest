@@ -3,7 +3,7 @@ package main
 import (
 	"net/http"
 
-	"github.com/embroker/codeshiptest/dump"
+	"github.com/bojan-embroker/codeshiptest/dump"
 )
 
 func main() {

@@ -1,0 +1,16 @@
+{
+  "name": "codeshiptest",
+  "description": "",
+  "scripts": {
+  },
+  "env": {
+  },
+  "addons": [
+
+  ],
+  "buildpacks": [
+    {
+      "url": "https://github.com/heroku/heroku-buildpack-go"
+    }
+  ]
+}

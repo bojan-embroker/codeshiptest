@@ -2,6 +2,7 @@ package main
 
 import (
 	"flag"
+	"fmt"
 	"log"
 	"net/http"
 	"os"
@@ -28,8 +29,17 @@ func main() {
 	mux.HandleFunc("/", func(responseWriter http.ResponseWriter, request *http.Request) {
 
 		dump.Dump(responseWriter, request)
-		log.Println("### test01 ###")
+		responseWriter.Write([]byte(fmt.Sprintf("Process ID: %v", os.Getpid())))
 	})
 
-	http.ListenAndServe(":8080", mux)
+	mux.HandleFunc("/crash", func(responseWriter http.ResponseWriter, request *http.Request) {
+		os.Exit(1)
+	})
+
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = "8080"
+	}
+
+	http.ListenAndServe(":"+port, mux)
 }

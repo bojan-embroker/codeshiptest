@@ -5,5 +5,5 @@ import (
 )
 
 func TestDump(t *testing.T) {
-
+	t.Fail()
 }
